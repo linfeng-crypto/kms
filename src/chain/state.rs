@@ -74,8 +74,9 @@ impl State {
         if new_state.height < self.consensus_state.height {
             fail!(
                 StateErrorKind::HeightRegression,
-                "last height:{} new height:{}",
+                "last height:{} in state file {:?}, new height:{}",
                 self.consensus_state.height,
+                self.state_file_path,
                 new_state.height
             );
         } else if new_state.height == self.consensus_state.height {

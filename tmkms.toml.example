@@ -21,6 +21,12 @@ id = "irishub"
 key_format = { type = "bech32", account_key_prefix = "iap", consensus_key_prefix = "icp" }
 # state_file = "/path/to/irishub_priv_validator_state.json"
 
+# example of crypto.com chain settings
+[[chain]]
+id = "test-chain-y3m1e6-AB"
+key_format = { type = "hex" }
+
+
 ## Validator configuration
 [[validator]]
 addr = "tcp://f88883b673fc69d7869cab098de3bafc2ff76eb8@example1.example.com:26658"
@@ -43,6 +49,13 @@ keys = [{ chain_ids = ["cosmoshub-1"], key = 1 }]
 # enable the `ledger` feature to use this backend
 [[providers.ledgertm]]
 chain_ids = ["cosmoshub-1"]
+
+# enable the `sgx` feature to use this backend
+[[providers.sgx]]
+chain_ids = ["test-chain-y3m1e6-AB"]
+path = "/tmp/sgx_sign.key"
+sgx_server = "127.0.0.1:8888"
+
 
 # enable the `softsign` feature to use this backend
 # note: the `yubihsm` or `ledger` backends are recommended
