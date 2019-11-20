@@ -110,6 +110,9 @@ pub fn load_config(registry: &mut chain::Registry, config: &ProviderConfig) -> R
     #[cfg(feature = "softsign")]
     ed25519::softsign::init(registry, &config.softsign)?;
 
+    #[cfg(feature = "sgx")]
+    ed25519::sgx::init(registry, &config.sgx)?;
+
     #[cfg(feature = "yubihsm")]
     ed25519::yubihsm::init(registry, &config.yubihsm)?;
 

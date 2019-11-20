@@ -4,6 +4,8 @@
 mod ledger;
 #[cfg(feature = "softsign")]
 mod softsign;
+#[cfg(feature = "sgx")]
+mod sgx;
 mod start;
 mod version;
 #[cfg(feature = "yubihsm")]
@@ -13,6 +15,8 @@ mod yubihsm;
 pub use self::ledger::LedgerCommand;
 #[cfg(feature = "softsign")]
 pub use self::softsign::SoftsignCommand;
+#[cfg(feature = "sgx")]
+pub use self::sgx::SgxCommand;
 #[cfg(feature = "yubihsm")]
 pub use self::yubihsm::YubihsmCommand;
 
@@ -50,6 +54,11 @@ pub enum KmsCommand {
     #[cfg(feature = "softsign")]
     #[options(help = "subcommands for software signer")]
     Softsign(SoftsignCommand),
+
+    /// `sgx` subcommand
+    #[cfg(feature = "sgx")]
+    #[options(help = "subcommands for sgx signer")]
+    Sgx(SgxCommand),
 }
 
 impl KmsCommand {

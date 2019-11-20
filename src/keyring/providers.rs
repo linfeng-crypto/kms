@@ -16,6 +16,10 @@ pub enum SigningProvider {
     /// Software signer (not intended for production use)
     #[cfg(feature = "softsign")]
     SoftSign,
+
+    /// SGX + Tendermint application
+    #[cfg(feature = "sgx")]
+    Sgx,
 }
 
 impl Display for SigningProvider {
@@ -27,8 +31,12 @@ impl Display for SigningProvider {
             #[cfg(feature = "ledgertm")]
             SigningProvider::LedgerTm => write!(f, "ledgertm"),
 
+            #[cfg(feature = "sgx")]
+            SigningProvider::Sgx=> write!(f, "sgx"),
+
             #[cfg(feature = "softsign")]
             SigningProvider::SoftSign => write!(f, "softsign"),
+
         }
     }
 }
