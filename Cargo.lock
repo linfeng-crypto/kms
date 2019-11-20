@@ -1538,7 +1538,7 @@ dependencies = [
 [[package]]
 name = "signatory"
 version = "0.16.0"
-source = "git+https://github.com/linfeng-crypto/signatory.git?rev=0f1cbcad11a0db965297007b72df3be01bfd61a5#0f1cbcad11a0db965297007b72df3be01bfd61a5"
+source = "git+https://github.com/crypto-com/signatory.git?rev=6c3ae464106b48d2cd33d5c235d6574339afd948#6c3ae464106b48d2cd33d5c235d6574339afd948"
 dependencies = [
  "ecdsa",
  "ed25519",
@@ -1566,45 +1566,45 @@ dependencies = [
 [[package]]
 name = "signatory-dalek"
 version = "0.16.0"
-source = "git+https://github.com/linfeng-crypto/signatory.git?rev=0f1cbcad11a0db965297007b72df3be01bfd61a5#0f1cbcad11a0db965297007b72df3be01bfd61a5"
+source = "git+https://github.com/crypto-com/signatory.git?rev=6c3ae464106b48d2cd33d5c235d6574339afd948#6c3ae464106b48d2cd33d5c235d6574339afd948"
 dependencies = [
  "digest 0.8.1",
  "ed25519-dalek",
  "sha2 0.8.0",
- "signatory 0.16.0 (git+https://github.com/linfeng-crypto/signatory.git?rev=0f1cbcad11a0db965297007b72df3be01bfd61a5)",
+ "signatory 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=6c3ae464106b48d2cd33d5c235d6574339afd948)",
 ]
 
 [[package]]
 name = "signatory-ledger-tm"
 version = "0.16.0"
-source = "git+https://github.com/linfeng-crypto/signatory.git?rev=0f1cbcad11a0db965297007b72df3be01bfd61a5#0f1cbcad11a0db965297007b72df3be01bfd61a5"
+source = "git+https://github.com/crypto-com/signatory.git?rev=6c3ae464106b48d2cd33d5c235d6574339afd948#6c3ae464106b48d2cd33d5c235d6574339afd948"
 dependencies = [
  "lazy_static",
  "ledger-tendermint",
- "signatory 0.16.0 (git+https://github.com/linfeng-crypto/signatory.git?rev=0f1cbcad11a0db965297007b72df3be01bfd61a5)",
+ "signatory 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=6c3ae464106b48d2cd33d5c235d6574339afd948)",
 ]
 
 [[package]]
 name = "signatory-secp256k1"
 version = "0.16.0"
-source = "git+https://github.com/linfeng-crypto/signatory.git?rev=0f1cbcad11a0db965297007b72df3be01bfd61a5#0f1cbcad11a0db965297007b72df3be01bfd61a5"
+source = "git+https://github.com/crypto-com/signatory.git?rev=6c3ae464106b48d2cd33d5c235d6574339afd948#6c3ae464106b48d2cd33d5c235d6574339afd948"
 dependencies = [
  "secp256k1",
- "signatory 0.16.0 (git+https://github.com/linfeng-crypto/signatory.git?rev=0f1cbcad11a0db965297007b72df3be01bfd61a5)",
+ "signatory 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=6c3ae464106b48d2cd33d5c235d6574339afd948)",
  "signature 1.0.0-pre.1",
 ]
 
 [[package]]
 name = "signatory-sgx"
 version = "0.16.0"
-source = "git+https://github.com/linfeng-crypto/signatory.git?rev=0f1cbcad11a0db965297007b72df3be01bfd61a5#0f1cbcad11a0db965297007b72df3be01bfd61a5"
+source = "git+https://github.com/crypto-com/signatory.git?rev=6c3ae464106b48d2cd33d5c235d6574339afd948#6c3ae464106b48d2cd33d5c235d6574339afd948"
 dependencies = [
  "bincode",
  "env_logger",
  "log",
  "serde",
  "sgx-isa",
- "signatory 0.16.0 (git+https://github.com/linfeng-crypto/signatory.git?rev=0f1cbcad11a0db965297007b72df3be01bfd61a5)",
+ "signatory 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=6c3ae464106b48d2cd33d5c235d6574339afd948)",
  "structopt",
  "subtle-encoding 0.5.0",
 ]
@@ -1963,7 +1963,7 @@ dependencies = [
  "serde",
  "serde_json",
  "sha2 0.8.0",
- "signatory 0.16.0 (git+https://github.com/linfeng-crypto/signatory.git?rev=0f1cbcad11a0db965297007b72df3be01bfd61a5)",
+ "signatory 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=6c3ae464106b48d2cd33d5c235d6574339afd948)",
  "signatory-dalek",
  "signatory-ledger-tm",
  "signatory-secp256k1",
