@@ -47,27 +47,27 @@ yubihsm = { version = "0.29", features = ["setup", "usb"], optional = true }
 zeroize = "1"
 
 [dependencies.signatory]
-git = "https://github.com/linfeng-crypto/signatory.git"
-rev = "0f1cbcad11a0db965297007b72df3be01bfd61a5"
+git = "https://github.com/crypto-com/signatory.git"
+rev = "5e8ebca582b6fc5903f8d025f80107944e58043d"
 features = ["ecdsa", "ed25519", "encoding"]
 
 [dependencies.signatory-dalek]
-git = "https://github.com/linfeng-crypto/signatory.git"
-rev = "0f1cbcad11a0db965297007b72df3be01bfd61a5"
+git = "https://github.com/crypto-com/signatory.git"
+rev = "5e8ebca582b6fc5903f8d025f80107944e58043d"
 
 [dependencies.signatory-secp256k1]
-git = "https://github.com/linfeng-crypto/signatory.git"
-rev = "0f1cbcad11a0db965297007b72df3be01bfd61a5"
+git = "https://github.com/crypto-com/signatory.git"
+rev = "5e8ebca582b6fc5903f8d025f80107944e58043d"
 
 [dependencies.signatory-ledger-tm]
-git = "https://github.com/linfeng-crypto/signatory.git"
-rev = "0f1cbcad11a0db965297007b72df3be01bfd61a5"
+git = "https://github.com/crypto-com/signatory.git"
+rev = "5e8ebca582b6fc5903f8d025f80107944e58043d"
 optional = true
 
 
 [dependencies.signatory-sgx]
-git = "https://github.com/linfeng-crypto/signatory.git"
-rev = "0f1cbcad11a0db965297007b72df3be01bfd61a5"
+git = "https://github.com/crypto-com/signatory.git"
+rev = "5e8ebca582b6fc5903f8d025f80107944e58043d"
 optional = true
 
 [dependencies.tendermint]
