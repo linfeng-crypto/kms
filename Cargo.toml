@@ -45,29 +45,32 @@ wait-timeout = "0.2"
 x25519-dalek = "0.5"
 yubihsm = { version = "0.29", features = ["setup", "usb"], optional = true }
 zeroize = "1"
+sgxs-loaders = { version = "0.2", optional = true }
+enclave-runner = {version = "0.2", optional = true }
+aesm-client = {version = "0.2", features = ["sgxs"], optional = true }
 
 [dependencies.signatory]
 git = "https://github.com/crypto-com/signatory.git"
-rev = "5e8ebca582b6fc5903f8d025f80107944e58043d"
+rev = "b8f94d94d82995dfb0653e91f4a3761c30acf2ba"
 features = ["ecdsa", "ed25519", "encoding"]
 
 [dependencies.signatory-dalek]
 git = "https://github.com/crypto-com/signatory.git"
-rev = "5e8ebca582b6fc5903f8d025f80107944e58043d"
+rev = "b8f94d94d82995dfb0653e91f4a3761c30acf2ba"
 
 [dependencies.signatory-secp256k1]
 git = "https://github.com/crypto-com/signatory.git"
-rev = "5e8ebca582b6fc5903f8d025f80107944e58043d"
+rev = "b8f94d94d82995dfb0653e91f4a3761c30acf2ba"
 
 [dependencies.signatory-ledger-tm]
 git = "https://github.com/crypto-com/signatory.git"
-rev = "5e8ebca582b6fc5903f8d025f80107944e58043d"
+rev = "b8f94d94d82995dfb0653e91f4a3761c30acf2ba"
 optional = true
 
 
 [dependencies.signatory-sgx]
 git = "https://github.com/crypto-com/signatory.git"
-rev = "5e8ebca582b6fc5903f8d025f80107944e58043d"
+rev = "b8f94d94d82995dfb0653e91f4a3761c30acf2ba"
 optional = true
 
 [dependencies.tendermint]
@@ -82,10 +85,12 @@ rand = "0.7"
 version = "0.4"
 features = ["testing"]
 
+
+
 [features]
 default = []
 softsign = []
-sgx = ["signatory-sgx"]
+sgx = ["signatory-sgx", "sgxs-loaders", "enclave-runner", "aesm-client"]
 ledgertm = ["signatory-ledger-tm"]
 yubihsm-mock = ["yubihsm/mockhsm"]
 yubihsm-server = ["yubihsm/http-server", "rpassword"]

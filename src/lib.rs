@@ -1,10 +1,15 @@
 //! Tendermint Key Management System
 
 #![forbid(unsafe_code)]
-#![deny(warnings, missing_docs, unused_qualifications)]
+//#![deny(warnings, missing_docs, unused_qualifications)]
 #![doc(html_root_url = "https://docs.rs/tmkms/0.7.0-alpha1")]
 
-#[cfg(not(any(feature = "softsign", feature = "yubihsm", feature = "ledgertm", feature = "sgx")))]
+#[cfg(not(any(
+    feature = "softsign",
+    feature = "yubihsm",
+    feature = "ledgertm",
+    feature = "sgx"
+)))]
 compile_error!(
     "please enable one of the following backends with cargo's --features argument: \
      yubihsm, ledgertm, softsign (e.g. --features=yubihsm)"

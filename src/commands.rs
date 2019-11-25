@@ -2,10 +2,10 @@
 
 #[cfg(feature = "ledgertm")]
 mod ledger;
-#[cfg(feature = "softsign")]
-mod softsign;
 #[cfg(feature = "sgx")]
 mod sgx;
+#[cfg(feature = "softsign")]
+mod softsign;
 mod start;
 mod version;
 #[cfg(feature = "yubihsm")]
@@ -13,10 +13,10 @@ mod yubihsm;
 
 #[cfg(feature = "ledgertm")]
 pub use self::ledger::LedgerCommand;
-#[cfg(feature = "softsign")]
-pub use self::softsign::SoftsignCommand;
 #[cfg(feature = "sgx")]
 pub use self::sgx::SgxCommand;
+#[cfg(feature = "softsign")]
+pub use self::softsign::SoftsignCommand;
 #[cfg(feature = "yubihsm")]
 pub use self::yubihsm::YubihsmCommand;
 

@@ -32,11 +32,10 @@ impl Display for SigningProvider {
             SigningProvider::LedgerTm => write!(f, "ledgertm"),
 
             #[cfg(feature = "sgx")]
-            SigningProvider::Sgx=> write!(f, "sgx"),
+            SigningProvider::Sgx => write!(f, "sgx"),
 
             #[cfg(feature = "softsign")]
             SigningProvider::SoftSign => write!(f, "softsign"),
-
         }
     }
 }
