@@ -2,9 +2,7 @@
 
 use crate::chain;
 use serde::Deserialize;
-use std::{
-    path::{PathBuf},
-};
+use std::path::PathBuf;
 
 /// Software signer configuration
 #[derive(Deserialize, Debug)]

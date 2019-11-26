@@ -2,19 +2,19 @@
 
 #[cfg(feature = "ledgertm")]
 pub mod ledgertm;
-#[cfg(feature = "softsign")]
-pub mod softsign;
 #[cfg(feature = "sgx")]
 pub mod sgx;
+#[cfg(feature = "softsign")]
+pub mod softsign;
 #[cfg(feature = "yubihsm")]
 pub mod yubihsm;
 
 #[cfg(feature = "ledgertm")]
 use self::ledgertm::LedgerTendermintConfig;
-#[cfg(feature = "softsign")]
-use self::softsign::SoftsignConfig;
 #[cfg(feature = "sgx")]
 use self::sgx::SgxTendermintConfig;
+#[cfg(feature = "softsign")]
+use self::softsign::SoftsignConfig;
 #[cfg(feature = "yubihsm")]
 use self::yubihsm::YubihsmConfig;
 use serde::Deserialize;

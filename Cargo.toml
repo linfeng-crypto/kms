@@ -45,29 +45,32 @@ wait-timeout = "0.2"
 x25519-dalek = "0.5"
 yubihsm = { version = "0.29", features = ["setup", "usb"], optional = true }
 zeroize = "1"
+sgxs-loaders = { version = "0.2", optional = true }
+enclave-runner = {version = "0.2", optional = true }
+aesm-client = {version = "0.2", features = ["sgxs"], optional = true }
 
 [dependencies.signatory]
-git = "https://github.com/linfeng-crypto/signatory.git"
-rev = "0f1cbcad11a0db965297007b72df3be01bfd61a5"
+git = "https://github.com/crypto-com/signatory.git"
+rev = "8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
 features = ["ecdsa", "ed25519", "encoding"]
 
 [dependencies.signatory-dalek]
-git = "https://github.com/linfeng-crypto/signatory.git"
-rev = "0f1cbcad11a0db965297007b72df3be01bfd61a5"
+git = "https://github.com/crypto-com/signatory.git"
+rev = "8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
 
 [dependencies.signatory-secp256k1]
-git = "https://github.com/linfeng-crypto/signatory.git"
-rev = "0f1cbcad11a0db965297007b72df3be01bfd61a5"
+git = "https://github.com/crypto-com/signatory.git"
+rev = "8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
 
 [dependencies.signatory-ledger-tm]
-git = "https://github.com/linfeng-crypto/signatory.git"
-rev = "0f1cbcad11a0db965297007b72df3be01bfd61a5"
+git = "https://github.com/crypto-com/signatory.git"
+rev = "8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
 optional = true
 
 
 [dependencies.signatory-sgx]
-git = "https://github.com/linfeng-crypto/signatory.git"
-rev = "0f1cbcad11a0db965297007b72df3be01bfd61a5"
+git = "https://github.com/crypto-com/signatory.git"
+rev = "8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
 optional = true
 
 [dependencies.tendermint]
@@ -82,10 +85,13 @@ rand = "0.7"
 version = "0.4"
 features = ["testing"]
 
+
+
 [features]
 default = []
 softsign = []
-sgx = ["signatory-sgx"]
+
+sgx = ["signatory-sgx", "sgxs-loaders", "enclave-runner", "aesm-client"]
 ledgertm = ["signatory-ledger-tm"]
 yubihsm-mock = ["yubihsm/mockhsm"]
 yubihsm-server = ["yubihsm/http-server", "rpassword"]

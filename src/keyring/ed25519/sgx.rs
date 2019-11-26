@@ -9,12 +9,15 @@ use crate::{
     error::{Error, ErrorKind::*},
     keyring::SigningProvider,
 };
-use signatory_sgx::provider::SgxSigner;
 use signatory::public_key::PublicKeyed;
+use signatory_sgx::provider::SgxSigner;
 use tendermint::TendermintKey;
 
 /// Create software-backed Ed25519 signer objects from the given configuration
-pub fn init(chain_registry: &mut chain::Registry, configs: &[SgxTendermintConfig]) -> Result<(), Error> {
+pub fn init(
+    chain_registry: &mut chain::Registry,
+    configs: &[SgxTendermintConfig],
+) -> Result<(), Error> {
     if configs.is_empty() {
         return Ok(());
     }
@@ -33,9 +36,7 @@ pub fn init(chain_registry: &mut chain::Registry, configs: &[SgxTendermintConfig
     if let Err(e) = provider.ping() {
         fail!(AccessError, "access sgx server failed: {:?}", e.what());
     }
-    let public_key = provider.public_key().map_err(|_| {
-        Error::from(InvalidKey)
-    })?;
+    let public_key = provider.public_key().map_err(|_| Error::from(InvalidKey))?;
 
     // TODO(tarcieri): support for adding account keys into keyrings; upgrade Signatory version
     let consensus_pubkey = TendermintKey::ConsensusKey(
@@ -44,11 +45,7 @@ pub fn init(chain_registry: &mut chain::Registry, configs: &[SgxTendermintConfig
             .into(),
     );
 
-    let signer = Signer::new(
-        SigningProvider::Sgx,
-        consensus_pubkey,
-        Box::new(provider),
-    );
+    let signer = Signer::new(SigningProvider::Sgx, consensus_pubkey, Box::new(provider));
 
     for chain_id in &config.chain_ids {
         chain_registry.add_to_keyring(chain_id, signer.clone())?;
