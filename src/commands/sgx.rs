@@ -2,13 +2,14 @@
 mod runner;
 
 use abscissa_core::{Command, Help, Runnable};
-use runner::{run_sgx, write_to_buffer, SgxServer};
+use runner::{run_sgx, SGX_RECEIVER, SGX_SENDER};
 use signatory_sgx::error::Error as SError;
-use signatory_sgx::protocol::{get_data_from_stream, Decode, Encode, KeyPair, Request, Response};
+use signatory_sgx::protocol::{Decode, Encode, KeyPair, Request, Response};
 use signatory_sgx::provider::{convert_data_to_str, get_data_from_file, store_data_to_file};
 use signatory_sgx::seal_signer::SealedSigner;
-use std::path::Path;
 use std::path::PathBuf;
+use std::sync::mpsc::{channel, Receiver, Sender};
+use std::thread;
 
 /// The `softsign` subcommand
 #[derive(Command, Debug, Options, Runnable)]
@@ -26,14 +27,27 @@ pub enum SgxCommand {
     Publickey(PubkeyCommand),
 }
 
+fn init_channel() -> (Sender<Vec<u8>>, Receiver<Vec<u8>>) {
+    let (tx_host, rx_sgx) = channel();
+    let mut sgx_receiver = SGX_RECEIVER.lock().unwrap();
+    *sgx_receiver = Some(rx_sgx);
+
+    let (tx_sgx, rx_host) = channel();
+    let mut sgx_sender = SGX_SENDER.lock().unwrap();
+    *sgx_sender = Some(tx_sgx);
+    (tx_host, rx_host)
+}
+
 /// send request to sgx enclave and get the response
-fn send<P: AsRef<Path>>(request: Request, sgx_path: P) -> Result<Response, SError> {
-    let mut reader = SgxServer;
-    let request_rawdata = request.encode(true)?;
-    let _ = write_to_buffer(&request_rawdata)?;
-    run_sgx(sgx_path);
-    let data = get_data_from_stream(&mut reader)?;
-    Response::decode(&data)
+fn send(request: Request, tx: Sender<Vec<u8>>, rx: Receiver<Vec<u8>>) -> Result<Response, SError> {
+    let raw_data = request.encode(true)?;
+    // send data
+    tx.send(raw_data[0..8].to_vec()).unwrap();
+    tx.send(raw_data[8..].to_vec()).unwrap();
+    // wait for the result from the sgx enclave
+    let data = rx.recv().unwrap();
+    //  get response, the first 8 bits is the length info
+    Response::decode(&data[8..])
 }
 
 /// `keygen` command
@@ -68,8 +82,11 @@ impl KeygenCommand {
 
 impl Runnable for KeygenCommand {
     fn run(&self) {
+        let (tx, rx) = init_channel();
+        let sgx_path = self.sgx_path.clone();
+        let t = thread::spawn(move || run_sgx(sgx_path));
         let request = Request::GenerateKey;
-        let response = send(request, &self.sgx_path);
+        let response = send(request, tx.clone(), rx);
         match response {
             Err(e) => println!("get response error: {:?}", e),
             Ok(r) => match r {
@@ -80,6 +97,8 @@ impl Runnable for KeygenCommand {
                 e => println!("error type of response: {:?}", e),
             },
         }
+        drop(tx);
+        let _ = t.join();
     }
 }
 
@@ -94,11 +113,11 @@ pub struct PubkeyCommand {
 }
 
 impl PubkeyCommand {
-    fn get_pubkey(&self) -> Result<String, SError> {
+    fn get_pubkey(&self, tx: Sender<Vec<u8>>, rx: Receiver<Vec<u8>>) -> Result<String, SError> {
         let sgx_secret_raw = get_data_from_file(&self.key_path)?;
         let sealed_signer = SealedSigner::decode(&sgx_secret_raw)?;
         let request = Request::GetPublicKey(sealed_signer);
-        let response = send(request, &self.sgx_path)?;
+        let response = send(request, tx, rx)?;
         let pubkey_raw = match response {
             Response::PublicKey(pubkey_raw) => Ok(pubkey_raw),
             Response::Error(s) => Err(SError::new(s)),
@@ -112,10 +131,15 @@ impl PubkeyCommand {
 
 impl Runnable for PubkeyCommand {
     fn run(&self) {
-        let pubkey_str = match self.get_pubkey() {
+        let (tx, rx) = init_channel();
+        let sgx_path = self.sgx_path.clone();
+        let t = thread::spawn(move || run_sgx(sgx_path));
+        let pubkey_str = match self.get_pubkey(tx.clone(), rx) {
             Err(e) => e.what().to_string(),
             Ok(s) => s,
         };
         println!("get public key: {}", pubkey_str);
+        drop(tx);
+        let _ = t.join();
     }
 }

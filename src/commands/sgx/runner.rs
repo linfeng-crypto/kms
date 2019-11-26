@@ -4,56 +4,40 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 use aesm_client::AesmClient;
-use bytes::{Buf, BufMut};
 use enclave_runner::usercalls::{SyncStream, UsercallExtension};
 use enclave_runner::EnclaveBuilder;
 use sgxs_loaders::isgx::Device as IsgxDevice;
-use std::cell::RefCell;
-use std::io::Cursor;
 use std::io::Result as IoResult;
-use std::io::{Read, Write};
-use std::ops::DerefMut;
 use std::path::Path;
+use std::sync::mpsc::{Receiver, Sender};
+use std::sync::Mutex;
+
+lazy_static! {
+    pub static ref SGX_RECEIVER: Mutex<Option<Receiver<Vec<u8>>>> = Mutex::new(None);
+    pub static ref SGX_SENDER: Mutex<Option<Sender<Vec<u8>>>> = Mutex::new(None);
+}
 
 /// User call extension allow the enclave code to "connect" to an external service via a customized enclave runner.
-/// Here we customize the runner to intercept calls to connect to an address "cat" which actually connects the enclave application to
-/// stdin and stdout of `cat` process.
-
+/// Here we customize the runner to intercept calls to connect to an address "sgx" which actually connects the enclave application to
 pub struct SgxServer;
-
-thread_local! {
-    pub static BUFFER: RefCell<Cursor<Vec<u8>>> = RefCell::new(Cursor::new(vec![]));
-}
-
-pub fn read_from_buffer(dest: &mut [u8]) -> IoResult<usize> {
-    BUFFER.with(|cell| {
-        let mut cursor = cell.borrow_mut();
-        let mut reader = cursor.deref_mut().reader();
-        reader.read(dest)
-    })
-}
-
-pub fn write_to_buffer(src: &[u8]) -> IoResult<usize> {
-    BUFFER.with(|cell| {
-        let mut cursor = cell.borrow_mut();
-        let mut writer = cursor.get_mut().writer();
-        writer.write(src)
-    })
-}
-
-impl Read for SgxServer {
-    fn read(&mut self, buf: &mut [u8]) -> IoResult<usize> {
-        read_from_buffer(buf)
-    }
-}
 
 impl SyncStream for SgxServer {
     fn read(&self, dest: &mut [u8]) -> IoResult<usize> {
-        read_from_buffer(dest)
+        let recv = SGX_RECEIVER.lock().expect("get receiver lock");
+        let r = recv.as_ref().unwrap();
+        let data = r.recv().unwrap_or_else(|_| std::process::exit(0));
+        dest.copy_from_slice(&data);
+        Ok(data.len())
     }
 
     fn write(&self, src: &[u8]) -> IoResult<usize> {
-        write_to_buffer(src)
+        let sender = SGX_SENDER.lock().expect("get sender lock");
+        sender
+            .as_ref()
+            .unwrap()
+            .send(src.to_vec())
+            .expect("send error");
+        Ok(src.len())
     }
 
     fn flush(&self) -> IoResult<()> {

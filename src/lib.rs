@@ -17,6 +17,8 @@ compile_error!(
 
 #[macro_use]
 extern crate abscissa_core;
+#[macro_use]
+extern crate lazy_static;
 extern crate prost_amino as prost;
 
 pub mod application;

@@ -1487,7 +1487,7 @@ dependencies = [
 [[package]]
 name = "signatory"
 version = "0.16.0"
-source = "git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba#b8f94d94d82995dfb0653e91f4a3761c30acf2ba"
+source = "git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6#8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
 dependencies = [
  "ecdsa 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "ed25519 1.0.0-pre.1 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -1514,44 +1514,44 @@ dependencies = [
 [[package]]
 name = "signatory-dalek"
 version = "0.16.0"
-source = "git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba#b8f94d94d82995dfb0653e91f4a3761c30acf2ba"
+source = "git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6#8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
 dependencies = [
  "digest 0.8.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "ed25519-dalek 1.0.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "sha2 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "signatory 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba)",
+ "signatory 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6)",
 ]
 
 [[package]]
 name = "signatory-ledger-tm"
 version = "0.16.0"
-source = "git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba#b8f94d94d82995dfb0653e91f4a3761c30acf2ba"
+source = "git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6#8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
 dependencies = [
  "lazy_static 1.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "ledger-tendermint 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "signatory 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba)",
+ "signatory 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6)",
 ]
 
 [[package]]
 name = "signatory-secp256k1"
 version = "0.16.0"
-source = "git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba#b8f94d94d82995dfb0653e91f4a3761c30acf2ba"
+source = "git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6#8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
 dependencies = [
  "secp256k1 0.15.5 (registry+https://github.com/rust-lang/crates.io-index)",
- "signatory 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba)",
+ "signatory 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6)",
  "signature 1.0.0-pre.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "signatory-sgx"
 version = "0.16.0"
-source = "git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba#b8f94d94d82995dfb0653e91f4a3761c30acf2ba"
+source = "git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6#8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
 dependencies = [
  "bincode 1.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "log 0.4.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde 1.0.102 (registry+https://github.com/rust-lang/crates.io-index)",
  "sgx-isa 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "signatory 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba)",
+ "signatory 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6)",
  "subtle-encoding 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -1853,11 +1853,11 @@ dependencies = [
  "serde_json 1.0.41 (registry+https://github.com/rust-lang/crates.io-index)",
  "sgxs-loaders 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "sha2 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "signatory 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba)",
- "signatory-dalek 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba)",
- "signatory-ledger-tm 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba)",
- "signatory-secp256k1 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba)",
- "signatory-sgx 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba)",
+ "signatory 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6)",
+ "signatory-dalek 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6)",
+ "signatory-ledger-tm 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6)",
+ "signatory-secp256k1 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6)",
+ "signatory-sgx 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6)",
  "subtle 2.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "subtle-encoding 0.4.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "tempfile 3.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -2367,12 +2367,12 @@ dependencies = [
 "checksum signal-hook-registry 1.1.1 (registry+https://github.com/rust-lang/crates.io-index)" = "1797d48f38f91643908bb14e35e79928f9f4b3cefb2420a564dde0991b4358dc"
 "checksum signatory 0.11.5 (registry+https://github.com/rust-lang/crates.io-index)" = "45329515bd428e81eb5b08c1629fb8099d79ea8ce8e1b9f3b68ee766be82f66d"
 "checksum signatory 0.12.0 (registry+https://github.com/rust-lang/crates.io-index)" = "92785dea71e4d1d2b2c5dceee9cdaf809a177e3865b29d246b0314f4ecc110b0"
-"checksum signatory 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba)" = "<none>"
+"checksum signatory 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6)" = "<none>"
 "checksum signatory 0.16.0 (registry+https://github.com/rust-lang/crates.io-index)" = "e8bf586660531e464ee01168605e858ddc90b7191e7fe4206478d257e0bfcc94"
-"checksum signatory-dalek 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba)" = "<none>"
-"checksum signatory-ledger-tm 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba)" = "<none>"
-"checksum signatory-secp256k1 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba)" = "<none>"
-"checksum signatory-sgx 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=b8f94d94d82995dfb0653e91f4a3761c30acf2ba)" = "<none>"
+"checksum signatory-dalek 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6)" = "<none>"
+"checksum signatory-ledger-tm 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6)" = "<none>"
+"checksum signatory-secp256k1 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6)" = "<none>"
+"checksum signatory-sgx 0.16.0 (git+https://github.com/crypto-com/signatory.git?rev=8e90f286374dbf1c34366d7a8d488a08fffc3fe6)" = "<none>"
 "checksum signature 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "144b5d1138a4339c839603f15f69ffe3195e51b5caa92f815b47d4553db47337"
 "checksum signature 1.0.0-pre.1 (registry+https://github.com/rust-lang/crates.io-index)" = "a0cfcdc45066661979294e965c21b60355da35eb5d638af8143e5aa83fdfce53"
 "checksum signature_derive 1.0.0-pre.0 (registry+https://github.com/rust-lang/crates.io-index)" = "30d0e333aec3605c822b1c7c760f6fa3d28a78d7d762a7b59d21fac4ebbf3680"

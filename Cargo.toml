@@ -51,26 +51,26 @@ aesm-client = {version = "0.2", features = ["sgxs"], optional = true }
 
 [dependencies.signatory]
 git = "https://github.com/crypto-com/signatory.git"
-rev = "b8f94d94d82995dfb0653e91f4a3761c30acf2ba"
+rev = "8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
 features = ["ecdsa", "ed25519", "encoding"]
 
 [dependencies.signatory-dalek]
 git = "https://github.com/crypto-com/signatory.git"
-rev = "b8f94d94d82995dfb0653e91f4a3761c30acf2ba"
+rev = "8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
 
 [dependencies.signatory-secp256k1]
 git = "https://github.com/crypto-com/signatory.git"
-rev = "b8f94d94d82995dfb0653e91f4a3761c30acf2ba"
+rev = "8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
 
 [dependencies.signatory-ledger-tm]
 git = "https://github.com/crypto-com/signatory.git"
-rev = "b8f94d94d82995dfb0653e91f4a3761c30acf2ba"
+rev = "8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
 optional = true
 
 
 [dependencies.signatory-sgx]
 git = "https://github.com/crypto-com/signatory.git"
-rev = "b8f94d94d82995dfb0653e91f4a3761c30acf2ba"
+rev = "8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
 optional = true
 
 [dependencies.tendermint]
@@ -90,6 +90,7 @@ features = ["testing"]
 [features]
 default = []
 softsign = []
+
 sgx = ["signatory-sgx", "sgxs-loaders", "enclave-runner", "aesm-client"]
 ledgertm = ["signatory-ledger-tm"]
 yubihsm-mock = ["yubihsm/mockhsm"]
