@@ -8,7 +8,7 @@ mod sgx;
 mod softsign;
 mod start;
 mod version;
-#[cfg(feature = "yubihsm")]
+#[cfg(feature = "yubihsm-client")]
 mod yubihsm;
 
 #[cfg(feature = "ledgertm")]
@@ -17,7 +17,7 @@ pub use self::ledger::LedgerCommand;
 pub use self::sgx::SgxCommand;
 #[cfg(feature = "softsign")]
 pub use self::softsign::SoftsignCommand;
-#[cfg(feature = "yubihsm")]
+#[cfg(feature = "yubihsm-client")]
 pub use self::yubihsm::YubihsmCommand;
 
 pub use self::{start::StartCommand, version::VersionCommand};
@@ -41,7 +41,7 @@ pub enum KmsCommand {
     Version(VersionCommand),
 
     /// `yubihsm` subcommand
-    #[cfg(feature = "yubihsm")]
+    #[cfg(feature = "yubihsm-client")]
     #[options(help = "subcommands for YubiHSM2")]
     Yubihsm(YubihsmCommand),
 
@@ -66,7 +66,7 @@ impl KmsCommand {
     pub fn verbose(&self) -> bool {
         match self {
             KmsCommand::Start(run) => run.verbose,
-            #[cfg(feature = "yubihsm")]
+            #[cfg(feature = "yubihsm-client")]
             KmsCommand::Yubihsm(yubihsm) => yubihsm.verbose(),
             _ => false,
         }
@@ -79,7 +79,7 @@ impl Configurable<KmsConfig> for KmsCommand {
     fn config_path(&self) -> Option<PathBuf> {
         let config = match self {
             KmsCommand::Start(start) => start.config.as_ref(),
-            #[cfg(feature = "yubihsm")]
+            #[cfg(feature = "yubihsm-client")]
             KmsCommand::Yubihsm(yubihsm) => yubihsm.config_path(),
             #[cfg(feature = "ledgertm")]
             KmsCommand::Ledger(ledger) => ledger.config_path(),

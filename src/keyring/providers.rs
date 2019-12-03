@@ -6,7 +6,7 @@ use std::fmt::{self, Display};
 #[derive(Copy, Clone, Debug, Eq, Hash, PartialEq)]
 pub enum SigningProvider {
     /// YubiHSM provider
-    #[cfg(feature = "yubihsm")]
+    #[cfg(feature = "yubihsm-client")]
     Yubihsm,
 
     /// Ledger + Tendermint application
@@ -25,7 +25,7 @@ pub enum SigningProvider {
 impl Display for SigningProvider {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            #[cfg(feature = "yubihsm")]
+            #[cfg(feature = "yubihsm-client")]
             SigningProvider::Yubihsm => write!(f, "yubihsm"),
 
             #[cfg(feature = "ledgertm")]

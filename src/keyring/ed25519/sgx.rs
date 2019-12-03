@@ -3,13 +3,15 @@
 //! This is mainly intended for testing/CI. Ideally real validators will use HSMs
 
 use super::Signer;
+use crate::sgx;
 use crate::{
     chain,
     config::provider::sgx::SgxTendermintConfig,
     error::{Error, ErrorKind::*},
     keyring::SigningProvider,
 };
-use signatory::public_key::PublicKeyed;
+use signatory_crypto::public_key::PublicKeyed;
+//use signatory::public_key::PublicKeyed;
 use signatory_sgx::provider::SgxSigner;
 use tendermint::TendermintKey;
 
@@ -32,9 +34,11 @@ pub fn init(
     }
 
     let config = &configs[0];
-    let provider = SgxSigner::new(config.sgx_server.clone(), config.path.clone());
+    // start a sgx server
+    let tx = sgx::run_sgx_server(config.sgx_path.clone());
+    let provider = SgxSigner::new(tx, config.key_path.clone());
     if let Err(e) = provider.ping() {
-        fail!(AccessError, "access sgx server failed: {:?}", e.what());
+        fail!(AccessError, "access sgx server failed: {:?}", e.what);
     }
     let public_key = provider.public_key().map_err(|_| Error::from(InvalidKey))?;
 

@@ -113,7 +113,7 @@ pub fn load_config(registry: &mut chain::Registry, config: &ProviderConfig) -> R
     #[cfg(feature = "sgx")]
     ed25519::sgx::init(registry, &config.sgx)?;
 
-    #[cfg(feature = "yubihsm")]
+    #[cfg(feature = "yubihsm-client")]
     ed25519::yubihsm::init(registry, &config.yubihsm)?;
 
     #[cfg(feature = "ledgertm")]

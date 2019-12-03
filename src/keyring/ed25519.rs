@@ -9,7 +9,7 @@ pub mod sgx;
 pub mod signer;
 #[cfg(feature = "softsign")]
 pub mod softsign;
-#[cfg(feature = "yubihsm")]
+#[cfg(feature = "yubihsm-client")]
 pub mod yubihsm;
 
 pub use self::signer::Signer;

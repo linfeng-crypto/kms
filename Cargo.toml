@@ -34,10 +34,10 @@ rpassword = { version = "3", optional = true }
 serde = { version = "1", features = ["serde_derive"] }
 serde_json = "1"
 sha2 = "0.8"
-#signatory = { version = "0.16", features = ["ecdsa", "ed25519", "encoding"] }
-#signatory-dalek = "0.16"
-#signatory-secp256k1 = "0.16"
-#signatory-ledger-tm = { version = "0.16", optional = true }
+signatory = { version = "0.16", features = ["ecdsa", "ed25519", "encoding"], optional = true }
+signatory-dalek = { version = "0.16", optional = true }
+signatory-secp256k1 = "0.16"
+signatory-ledger-tm = { version = "0.16", optional = true }
 subtle = "2"
 subtle-encoding = { version = "0.4", features = ["bech32-preview"] }
 tiny-bip39 = "0.6"
@@ -46,32 +46,28 @@ x25519-dalek = "0.5"
 yubihsm = { version = "0.29", features = ["setup", "usb"], optional = true }
 zeroize = "1"
 sgxs-loaders = { version = "0.2", optional = true }
-enclave-runner = {version = "0.2", optional = true }
-aesm-client = {version = "0.2", features = ["sgxs"], optional = true }
+enclave-runner = { version = "0.2", optional = true }
+aesm-client = { version = "0.2", features = ["sgxs"], optional = true }
+crossbeam-channel = { version = "0.4", optional = true }
 
-[dependencies.signatory]
-git = "https://github.com/crypto-com/signatory.git"
-rev = "8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
+[dependencies.signatory-crypto]
+package = "signatory"
 features = ["ecdsa", "ed25519", "encoding"]
-
-[dependencies.signatory-dalek]
-git = "https://github.com/crypto-com/signatory.git"
-rev = "8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
-
-[dependencies.signatory-secp256k1]
-git = "https://github.com/crypto-com/signatory.git"
-rev = "8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
-
-[dependencies.signatory-ledger-tm]
-git = "https://github.com/crypto-com/signatory.git"
-rev = "8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
 optional = true
+git = "https://github.com/crypto-com/signatory.git"
+rev = "2063b3595c9a00713b49dce7a0d7fd5db4191075"
+
+[dependencies.signatory-dalek-crypto]
+package = "signatory-dalek"
+optional = true
+git = "https://github.com/crypto-com/signatory.git"
+rev = "2063b3595c9a00713b49dce7a0d7fd5db4191075"
 
 
 [dependencies.signatory-sgx]
-git = "https://github.com/crypto-com/signatory.git"
-rev = "8e90f286374dbf1c34366d7a8d488a08fffc3fe6"
 optional = true
+git = "https://github.com/crypto-com/signatory.git"
+rev = "2063b3595c9a00713b49dce7a0d7fd5db4191075"
 
 [dependencies.tendermint]
 version = "0.10.1"
@@ -89,12 +85,13 @@ features = ["testing"]
 
 [features]
 default = []
-softsign = []
+softsign = ["signatory", "signatory-dalek"]
 
-sgx = ["signatory-sgx", "sgxs-loaders", "enclave-runner", "aesm-client"]
-ledgertm = ["signatory-ledger-tm"]
-yubihsm-mock = ["yubihsm/mockhsm"]
-yubihsm-server = ["yubihsm/http-server", "rpassword"]
+sgx = ["signatory-sgx", "sgxs-loaders", "enclave-runner", "aesm-client", "crossbeam-channel", "signatory-crypto", "signatory-dalek-crypto"]
+ledgertm = ["signatory-ledger-tm", "signatory", "signatory-dalek"]
+yubihsm-mock = ["yubihsm/mockhsm", "signatory", "signatory-dalek"]
+yubihsm-client = ["yubihsm", "signatory", "signatory-dalek"]
+yubihsm-server = ["yubihsm/http-server", "rpassword", "signatory", "signatory-dalek"]
 
 # Enable integer overflow checks in release builds for security reasons
 [profile.release]

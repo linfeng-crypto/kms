@@ -39,7 +39,7 @@ impl Error {
 pub enum ErrorKind {
     /// Access denied
     #[fail(display = "access denied")]
-    #[cfg(any(feature = "yubihsm", feature = "sgx"))]
+    #[cfg(any(feature = "yubihsm-client", feature = "sgx"))]
     AccessError,
 
     /// Error in configuration file

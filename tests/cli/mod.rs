@@ -8,7 +8,7 @@ use std::{
 
 use super::KMS_EXE_PATH;
 
-#[cfg(feature = "yubihsm")]
+#[cfg(feature = "yubihsm-client")]
 mod yubihsm;
 
 /// Run the `tmkms` CLI command with the given arguments

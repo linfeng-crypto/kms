@@ -6,7 +6,7 @@ pub mod ledgertm;
 pub mod sgx;
 #[cfg(feature = "softsign")]
 pub mod softsign;
-#[cfg(feature = "yubihsm")]
+#[cfg(feature = "yubihsm-client")]
 pub mod yubihsm;
 
 #[cfg(feature = "ledgertm")]
@@ -15,7 +15,7 @@ use self::ledgertm::LedgerTendermintConfig;
 use self::sgx::SgxTendermintConfig;
 #[cfg(feature = "softsign")]
 use self::softsign::SoftsignConfig;
-#[cfg(feature = "yubihsm")]
+#[cfg(feature = "yubihsm-client")]
 use self::yubihsm::YubihsmConfig;
 use serde::Deserialize;
 
@@ -34,7 +34,7 @@ pub struct ProviderConfig {
     pub sgx: Vec<SgxTendermintConfig>,
 
     /// Map of yubihsm-connector labels to their configurations
-    #[cfg(feature = "yubihsm")]
+    #[cfg(feature = "yubihsm-client")]
     #[serde(default)]
     pub yubihsm: Vec<YubihsmConfig>,
 

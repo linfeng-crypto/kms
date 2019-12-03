@@ -12,8 +12,8 @@ pub struct SgxTendermintConfig {
     pub chain_ids: Vec<chain::Id>,
 
     /// Path to a file containing a sgx_secret key
-    pub path: PathBuf,
+    pub key_path: PathBuf,
 
     /// Sgx server address
-    pub sgx_server: String,
+    pub sgx_path: PathBuf,
 }
