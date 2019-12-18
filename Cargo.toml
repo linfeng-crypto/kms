@@ -55,19 +55,19 @@ package = "signatory"
 features = ["ecdsa", "ed25519", "encoding"]
 optional = true
 git = "https://github.com/crypto-com/signatory.git"
-rev = "2063b3595c9a00713b49dce7a0d7fd5db4191075"
+rev = "f6cd136cce8a3b19e794cbd78a13b1517d2c7ff1"
 
 [dependencies.signatory-dalek-crypto]
 package = "signatory-dalek"
 optional = true
 git = "https://github.com/crypto-com/signatory.git"
-rev = "2063b3595c9a00713b49dce7a0d7fd5db4191075"
+rev = "f6cd136cce8a3b19e794cbd78a13b1517d2c7ff1"
 
 
 [dependencies.signatory-sgx]
 optional = true
 git = "https://github.com/crypto-com/signatory.git"
-rev = "2063b3595c9a00713b49dce7a0d7fd5db4191075"
+rev = "f6cd136cce8a3b19e794cbd78a13b1517d2c7ff1"
 
 [dependencies.tendermint]
 version = "0.10.1"
